@@ -12,13 +12,18 @@ local function readFile(path)
 end
 
 local function lineByLine(file)
-    for i in string.gmatch(file, "%S+") do
-        if string.match(i, "Oyj") then
-            print(i)
-            print("enterprise found")
-        else
-            print("The word tiger was not found.")
-        end
+    -- for i in string.gmatch(file, "%;") do
+    --     if string.match(i, "-") then
+    --         print(i)
+    --         print("transaction found")
+    --     else
+    --         --print("The word tiger was not found.")
+    --         print(i)
+    --     end
+    -- end
+
+    for token in string.gmatch(file, "[^;]+") do
+        print(token)
     end
 end
 
