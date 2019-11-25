@@ -1,4 +1,5 @@
 local open = io.open
+local parsedData = {}
 
 local function readFile(path)
     local file = open(path, "rb") -- r read mode and b binary mode
@@ -12,21 +13,12 @@ local function readFile(path)
 end
 
 local function lineByLine(file)
-    -- for i in string.gmatch(file, "%;") do
-    --     if string.match(i, "-") then
-    --         print(i)
-    --         print("transaction found")
-    --     else
-    --         --print("The word tiger was not found.")
-    --         print(i)
-    --     end
-    -- end
-
     for token in string.gmatch(file, "[^;]+") do
-        print(token)
+        table.insert(parsedData, token)
     end
 end
 
 local fileContent = readFile("tiliTiedot.csv")
 --print(fileContent)
 lineByLine(fileContent)
+print(parsedData)
