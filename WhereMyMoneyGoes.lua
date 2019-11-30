@@ -14,6 +14,10 @@ end
 
 local function lineByLine(file)
     for token in string.gmatch(file, "[^;]+") do
+        -- print(token)
+        -- if token == nil then
+        --     print("tyhjä", token)
+        -- end
         table.insert(parsedData, token)
     end
 end
@@ -21,4 +25,13 @@ end
 local fileContent = readFile("tiliTiedot.csv")
 --print(fileContent)
 lineByLine(fileContent)
-print(parsedData)
+
+print(#parsedData)
+
+for i, v in ipairs(parsedData) do
+    print(i, v)
+
+    if v == "KORTTIOSTO" then
+        print(i - 1, "summa2", v)
+    end
+end
