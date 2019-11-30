@@ -30,25 +30,59 @@ print(#parsedData)
 
 local lengthOflist = #parsedData
 
-local debit = 0
+local cardPurchase = 0
+local eInvoice = 0
+local paperInvoice = 0
+local accountTransaction = 0 
+
+
 local lengthOfVar = 0
+
+local temp = 0
+local temp1 = 0
+local temp2 = 0
+
 for i = 1, lengthOflist, 1 do
-    --print(i, " -- ", parsedData[i])
+   -- print(i, " -- ", parsedData[i])
 
     if parsedData[i] == "KORTTIOSTO" then
-        local temp = 0
-        local temp1 = 0
-        local temp2 = 0
+    
         print(i, "transaktion hinta", parsedData[i - 1])
         lengthOfVar = #parsedData[i - 1]
         temp = string.sub(parsedData[i - 1], 2, lengthOfVar)
-        temp2 = string.gsub(temp, ',', '.')
+        temp2 = string.gsub(temp, ",", ".")
         temp1 = tonumber(temp2)
-        debit = debit + temp1
+        cardPurchase = cardPurchase + temp1
+    elseif parsedData[i] == "VERKKOMAKSU" then
+        print(i, "transaktion hinta", parsedData[i - 1])
+        lengthOfVar = #parsedData[i - 1]
+        temp = string.sub(parsedData[i - 1], 2, lengthOfVar)
+        temp2 = string.gsub(temp, ",", ".")
+        temp1 = tonumber(temp2)
+        paperInvoice = paperInvoice + temp1
+    elseif parsedData[i] == "E-LASKU" then
+        print(i, "transaktion hinta", parsedData[i - 1])
+        lengthOfVar = #parsedData[i - 1]
+        temp = string.sub(parsedData[i - 1], 2, lengthOfVar)
+        temp2 = string.gsub(temp, ",", ".")
+        temp1 = tonumber(temp2)
+        eInvoice = eInvoice + temp1
+    elseif parsedData[i] == "TILISIIRTO" then
+        print(i, "transaktion hinta", parsedData[i - 1])
+        lengthOfVar = #parsedData[i - 1]
+        temp = string.sub(parsedData[i - 1], 2, lengthOfVar)
+        temp2 = string.gsub(temp, ",", ".")
+        temp1 = tonumber(temp2)
+        accountTransaction = accountTransaction + temp1
     end
 end
 
-print("debit is", debit)
+print("cardPurchase is", cardPurchase)
+print("paperInvoice", paperInvoice)
+print("e invoice", eInvoice)
+print("account transaction", accountTransaction)
+
+print("together", cardPurchase + paperInvoice + eInvoice + accountTransaction)
 
 -- for i, v in ipairs(parsedData) do
 --     print(i, v)
