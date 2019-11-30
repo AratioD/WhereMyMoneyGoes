@@ -36,41 +36,51 @@ local paperInvoice = 0
 local accountTransaction = 0 
 
 
-local lengthOfVar = 0
-
+local lengthOfTransaction = 0
+local tempTransaction
 local temp = 0
 local temp1 = 0
 local temp2 = 0
 
 for i = 1, lengthOflist, 1 do
-   -- print(i, " -- ", parsedData[i])
+    print(i, " -- ", parsedData[i])
 
     if parsedData[i] == "KORTTIOSTO" then
-    
-        print(i, "transaktion hinta", parsedData[i - 1])
-        lengthOfVar = #parsedData[i - 1]
-        temp = string.sub(parsedData[i - 1], 2, lengthOfVar)
+
+        
+        --print(i, "transaktion hinta", parsedData[i - 1])
+        --How many tokens is a one transaction... I.g -23,43 is 5 tokens.
+        lengthOfTransaction = #parsedData[i - 1]
+        --Is a transaction a positive or negative
+     
+        temp = string.sub(parsedData[i - 1], 2, lengthOfTransaction)
         temp2 = string.gsub(temp, ",", ".")
         temp1 = tonumber(temp2)
         cardPurchase = cardPurchase + temp1
     elseif parsedData[i] == "VERKKOMAKSU" then
-        print(i, "transaktion hinta", parsedData[i - 1])
-        lengthOfVar = #parsedData[i - 1]
-        temp = string.sub(parsedData[i - 1], 2, lengthOfVar)
+        --print(i, "transaktion hinta", parsedData[i - 1])
+        lengthOfTransaction = #parsedData[i - 1]
+        temp = string.sub(parsedData[i - 1], 2, lengthOfTransaction)
         temp2 = string.gsub(temp, ",", ".")
         temp1 = tonumber(temp2)
         paperInvoice = paperInvoice + temp1
     elseif parsedData[i] == "E-LASKU" then
-        print(i, "transaktion hinta", parsedData[i - 1])
-        lengthOfVar = #parsedData[i - 1]
-        temp = string.sub(parsedData[i - 1], 2, lengthOfVar)
+        --print(i, "transaktion hinta", parsedData[i - 1])
+        lengthOfTransaction = #parsedData[i - 1]
+        temp = string.sub(parsedData[i - 1], 2, lengthOfTransaction)
         temp2 = string.gsub(temp, ",", ".")
         temp1 = tonumber(temp2)
         eInvoice = eInvoice + temp1
     elseif parsedData[i] == "TILISIIRTO" then
-        print(i, "transaktion hinta", parsedData[i - 1])
-        lengthOfVar = #parsedData[i - 1]
-        temp = string.sub(parsedData[i - 1], 2, lengthOfVar)
+        --allocate transaction to variable.
+        tempTransaction = parsedData[i - 1]
+        --print(i, "transaktion hinta", parsedData[i - 1])
+        --How many tokens is a one transaction... I.g -23,43 is 5 tokens.
+        lengthOfTransaction = #parsedData[i - 1]
+        --Is a transaction a positive or negative
+        temp = string.sub(parsedData[i - 1], 2, lengthOfTransaction)
+        lengthOfTransaction = #parsedData[i - 1]
+        temp = string.sub(parsedData[i - 1], 2, lengthOfTransaction)
         temp2 = string.gsub(temp, ",", ".")
         temp1 = tonumber(temp2)
         accountTransaction = accountTransaction + temp1
