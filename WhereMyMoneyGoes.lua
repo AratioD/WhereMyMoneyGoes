@@ -28,10 +28,20 @@ lineByLine(fileContent)
 
 print(#parsedData)
 
-for i, v in ipairs(parsedData) do
-    print(i, v)
+local lengthOflist = #parsedData
 
-    if v == "KORTTIOSTO" then
-        print(i - 1, "summa2", v)
+for i = 1, lengthOflist, 1 do
+    print(i, " -- ", parsedData[i])
+
+    if parsedData[i] == "KORTTIOSTO" then
+        print(i, "transaktion hinta", parsedData[i - 1])
     end
 end
+
+-- for i, v in ipairs(parsedData) do
+--     print(i, v)
+
+--     if v == "KORTTIOSTO" then
+--         print(i - 1, "summa2", v)
+--     end
+-- end
