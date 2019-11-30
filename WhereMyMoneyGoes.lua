@@ -30,13 +30,25 @@ print(#parsedData)
 
 local lengthOflist = #parsedData
 
+local debit = 0
+local lengthOfVar = 0
 for i = 1, lengthOflist, 1 do
-    print(i, " -- ", parsedData[i])
+    --print(i, " -- ", parsedData[i])
 
     if parsedData[i] == "KORTTIOSTO" then
+        local temp = 0
+        local temp1 = 0
+        local temp2 = 0
         print(i, "transaktion hinta", parsedData[i - 1])
+        lengthOfVar = #parsedData[i - 1]
+        temp = string.sub(parsedData[i - 1], 2, lengthOfVar)
+        temp2 = string.gsub(temp, ',', '.')
+        temp1 = tonumber(temp2)
+        debit = debit + temp1
     end
 end
+
+print("debit is", debit)
 
 -- for i, v in ipairs(parsedData) do
 --     print(i, v)
