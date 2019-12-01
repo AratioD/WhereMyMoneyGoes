@@ -75,10 +75,10 @@ for i = 1, lengthOflist, 1 do
         tempMoneyTransaction = parsedData[i - 1]
         --How many characteristics is a one transaction... e.g -23,43 is 5 tokens.
         lengthOfTransaction = #tempMoneyTransaction
-        --Is a transaction a positive or negative
+        --Is a transaction a positive or negative. This check is that "+" or "-"
         isPlusOrNegative = string.sub(tempMoneyTransaction, 1, 1)
 
-        if teisPlusOrNegative == "-" then
+        if isPlusOrNegative == "-" then
             --take money value out
             temp = string.sub(tempMoneyTransaction, 2, lengthOfTransaction)
             --change possible colon to dot
