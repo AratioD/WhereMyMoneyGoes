@@ -38,7 +38,8 @@ local positiveAccoTrans = 0
 local positiveAccoTrans = 0
 
 local lengthOfTransaction = 0
-local tempMoneyTransaction
+local tempMoneyTransaction = 0
+local purchaseId = ""
 local temp = 0
 local temp1 = 0
 local temp2 = 0
@@ -77,6 +78,8 @@ for i = 1, lengthOflist, 1 do
         lengthOfTransaction = #tempMoneyTransaction
         --Is a transaction a positive or negative. This check is that "+" or "-"
         isPlusOrNegative = string.sub(tempMoneyTransaction, 1, 1)
+        --which was the purchase target
+        purchaseId = parsedData[i + 2]
 
         if isPlusOrNegative == "-" then
             --take money value out
