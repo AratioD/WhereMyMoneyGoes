@@ -33,11 +33,12 @@ local lengthOflist = #parsedData
 local cardPurchase = 0
 local eInvoice = 0
 local paperInvoice = 0
-local accountTransaction = 0 
-
+local negativeAccoTrans = 0
+local positiveAccoTrans = 0
+local positiveAccoTrans = 0
 
 local lengthOfTransaction = 0
-local tempTransaction
+local tempMoneyTransaction
 local temp = 0
 local temp1 = 0
 local temp2 = 0
@@ -46,13 +47,11 @@ for i = 1, lengthOflist, 1 do
     print(i, " -- ", parsedData[i])
 
     if parsedData[i] == "KORTTIOSTO" then
-
-        
         --print(i, "transaktion hinta", parsedData[i - 1])
         --How many tokens is a one transaction... I.g -23,43 is 5 tokens.
         lengthOfTransaction = #parsedData[i - 1]
         --Is a transaction a positive or negative
-     
+
         temp = string.sub(parsedData[i - 1], 2, lengthOfTransaction)
         temp2 = string.gsub(temp, ",", ".")
         temp1 = tonumber(temp2)
@@ -72,27 +71,42 @@ for i = 1, lengthOflist, 1 do
         temp1 = tonumber(temp2)
         eInvoice = eInvoice + temp1
     elseif parsedData[i] == "TILISIIRTO" then
-        --allocate transaction to variable.
-        tempTransaction = parsedData[i - 1]
-        --print(i, "transaktion hinta", parsedData[i - 1])
-        --How many tokens is a one transaction... I.g -23,43 is 5 tokens.
-        lengthOfTransaction = #parsedData[i - 1]
+        --allocate a money transaction to temporary variable.
+        tempMoneyTransaction = parsedData[i - 1]
+        --How many characteristics is a one transaction... e.g -23,43 is 5 tokens.
+        lengthOfTransaction = #tempMoneyTransaction
         --Is a transaction a positive or negative
-        temp = string.sub(parsedData[i - 1], 2, lengthOfTransaction)
-        lengthOfTransaction = #parsedData[i - 1]
-        temp = string.sub(parsedData[i - 1], 2, lengthOfTransaction)
-        temp2 = string.gsub(temp, ",", ".")
-        temp1 = tonumber(temp2)
-        accountTransaction = accountTransaction + temp1
+        isPlusOrNegative = string.sub(tempMoneyTransaction, 1, 1)
+
+        if teisPlusOrNegative == "-" then
+            --take money value out
+            temp = string.sub(tempMoneyTransaction, 2, lengthOfTransaction)
+            --change possible colon to dot
+            temp2 = string.gsub(temp, ",", ".")
+            --change string to numerical value
+            temp1 = tonumber(temp2)
+            --value allocation
+            negativeAccoTrans = negativeAccoTrans - temp1
+        elseif isPlusOrNegative == "+" then
+            --take money value out
+            temp = string.sub(tempMoneyTransaction, 2, lengthOfTransaction)
+            --change possible colon to dot
+            temp2 = string.gsub(temp, ",", ".")
+            --change string to numerical value
+            temp1 = tonumber(temp2)
+            --value allocation
+            positiveAccoTrans = positiveAccoTrans + temp1
+        end
     end
 end
 
 print("cardPurchase is", cardPurchase)
 print("paperInvoice", paperInvoice)
 print("e invoice", eInvoice)
-print("account transaction", accountTransaction)
+print("negative account transaction", negativeAccoTrans)
+print("positive account transaction", positiveAccoTrans)
 
-print("together", cardPurchase + paperInvoice + eInvoice + accountTransaction)
+print("together", cardPurchase + paperInvoice + eInvoice + positiveAccoTrans)
 
 -- for i, v in ipairs(parsedData) do
 --     print(i, v)
