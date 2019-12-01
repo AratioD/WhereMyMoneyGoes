@@ -22,6 +22,7 @@ local function lineByLine(file)
     end
 end
 
+--Your local file what to read. Please note with these settings it is in the same folder with the script
 local fileContent = readFile("tiliTiedot.csv")
 --print(fileContent)
 lineByLine(fileContent)
