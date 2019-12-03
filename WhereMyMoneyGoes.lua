@@ -96,18 +96,7 @@ for i = 1, lengthOflist, 1 do
     end
 end
 
-print("cardPurchase is", cardPurchase)
-print("paperInvoice", paperInvoice)
-print("e invoice", eInvoice)
-print("negative account transaction", negativeAccoTrans)
-print("positive account transaction", positiveAccoTrans)
+--lengthOflist = #accountTransfer
 
-print("together", cardPurchase + paperInvoice + eInvoice + positiveAccoTrans)
 
--- for i, v in ipairs(parsedData) do
---     print(i, v)
-
---     if v == "KORTTIOSTO" then
---         print(i - 1, "summa2", v)
---     end
--- end
+for key,value in pairs(accountTransfer) do print(key,value) end
