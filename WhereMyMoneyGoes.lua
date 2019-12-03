@@ -45,6 +45,8 @@ local temp = 0
 local temp1 = 0
 local temp2 = 0
 
+local accountTransfer = {}
+
 for i = 1, lengthOflist, 1 do
     print(i, " -- ", parsedData[i])
 
@@ -91,6 +93,8 @@ for i = 1, lengthOflist, 1 do
             temp1 = tonumber(temp2)
             --value allocation
             negativeAccoTrans = negativeAccoTrans - temp1
+
+            accountTransfer[purchaseId] = temp1
         elseif isPlusOrNegative == "+" then
             --take money value out
             temp = string.sub(tempMoneyTransaction, 2, lengthOfTransaction)
