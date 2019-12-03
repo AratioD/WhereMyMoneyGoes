@@ -50,31 +50,10 @@ local accountTransfer = {}
 for i = 1, lengthOflist, 1 do
     print(i, " -- ", parsedData[i])
 
-    if parsedData[i] == "KORTTIOSTO" then
-        --print(i, "transaktion hinta", parsedData[i - 1])
-        --How many tokens is a one transaction... I.g -23,43 is 5 tokens.
-        lengthOfTransaction = #parsedData[i - 1]
-        --Is a transaction a positive or negative
-
-        temp = string.sub(parsedData[i - 1], 2, lengthOfTransaction)
-        temp2 = string.gsub(temp, ",", ".")
-        temp1 = tonumber(temp2)
-        cardPurchase = cardPurchase + temp1
-    elseif parsedData[i] == "VERKKOMAKSU" then
-        --print(i, "transaktion hinta", parsedData[i - 1])
-        lengthOfTransaction = #parsedData[i - 1]
-        temp = string.sub(parsedData[i - 1], 2, lengthOfTransaction)
-        temp2 = string.gsub(temp, ",", ".")
-        temp1 = tonumber(temp2)
-        paperInvoice = paperInvoice + temp1
-    elseif parsedData[i] == "E-LASKU" then
-        --print(i, "transaktion hinta", parsedData[i - 1])
-        lengthOfTransaction = #parsedData[i - 1]
-        temp = string.sub(parsedData[i - 1], 2, lengthOfTransaction)
-        temp2 = string.gsub(temp, ",", ".")
-        temp1 = tonumber(temp2)
-        eInvoice = eInvoice + temp1
-    elseif parsedData[i] == "TILISIIRTO" then
+    if
+        parsedData[i] == "TILISIIRTO" or parsedData[i] == "E-LASKU" or parsedData[i] == "VERKKOMAKSU" or
+            parsedData[i] == "KORTTIOSTO"
+     then
         --allocate a money transaction to temporary variable.
         tempMoneyTransaction = parsedData[i - 1]
         --How many characteristics is a one transaction... e.g -23,43 is 5 tokens.
