@@ -91,10 +91,13 @@ for i = 1, lengthOflist, 1 do
             temp2 = string.gsub(temp, ",", ".")
             --change string to numerical value
             temp1 = tonumber(temp2)
-            --value allocation
-            negativeAccoTrans = negativeAccoTrans - temp1
-            --Table insert working somehow
-            accountTransfer[purchaseId] = temp1
+            if accountTransfer[purchaseId] ~= nil then
+                --Table insert if there IS a previous value
+                accountTransfer[purchaseId] = accountTransfer[purchaseId] - temp1
+            else
+                --Table insert if there is not a previous value
+                accountTransfer[purchaseId] = -temp1
+            end
         elseif isPlusOrNegative == "+" then
             --take money value out
             temp = string.sub(tempMoneyTransaction, 2, lengthOfTransaction)
@@ -103,7 +106,13 @@ for i = 1, lengthOflist, 1 do
             --change string to numerical value
             temp1 = tonumber(temp2)
             --value allocation
-            positiveAccoTrans = positiveAccoTrans + temp1
+            if accountTransfer[purchaseId] ~= nil then
+                --Table insert if there IS a previous value
+                accountTransfer[purchaseId] = accountTransfer[purchaseId] + temp1
+            else
+                --Table insert if there is not a previous value
+                accountTransfer[purchaseId] = temp1
+            end
         end
     end
 end
