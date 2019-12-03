@@ -93,7 +93,7 @@ for i = 1, lengthOflist, 1 do
             temp1 = tonumber(temp2)
             --value allocation
             negativeAccoTrans = negativeAccoTrans - temp1
-
+            --Table insert working somehow
             accountTransfer[purchaseId] = temp1
         elseif isPlusOrNegative == "+" then
             --take money value out
