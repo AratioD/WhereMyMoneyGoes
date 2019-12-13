@@ -14,16 +14,17 @@ end
 
 local function lineByLine(file)
     for token in string.gmatch(file, "[^;]+") do
-        -- print(token)
-        -- if token == nil then
-        --     print("tyhjä", token)
-        -- end
+        print(token)
+        if token == nil then
+            print("tyhjä", token)
+        end
         table.insert(parsedData, token)
     end
 end
 
+
 --Your local file what to read. Please note with these settings it is in the same folder with the script
-local fileContent = readFile("tiliTiedot.csv")
+local fileContent = readFile("tili2019.csv")
 --print(fileContent)
 lineByLine(fileContent)
 
@@ -48,7 +49,7 @@ local temp2 = 0
 local accountTransfer = {}
 
 for i = 1, lengthOflist, 1 do
-    print(i, " -- ", parsedData[i])
+    --print(i, " -- ", parsedData[i])
 
     if
         parsedData[i] == "TILISIIRTO" or parsedData[i] == "E-LASKU" or parsedData[i] == "VERKKOMAKSU" or
