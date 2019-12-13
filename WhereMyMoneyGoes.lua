@@ -23,7 +23,7 @@ local function lineByLine(file)
 end
 
 --Your local file what to read. Please note with these settings it is in the same folder with the script
-local fileContent = readFile("tiliTiedot.csv")
+local fileContent = readFile("tili2019.csv")
 --print(fileContent)
 lineByLine(fileContent)
 
@@ -61,7 +61,7 @@ for i = 1, lengthOflist, 1 do
         --Is a transaction a positive or negative. This check is that "+" or "-"
         isPlusOrNegative = string.sub(tempMoneyTransaction, 1, 1)
         --which was the purchase target
-        purchaseId = parsedData[i + 2]
+        purchaseId = parsedData[i + 1]
 
         if isPlusOrNegative == "-" then
             --take money value out
