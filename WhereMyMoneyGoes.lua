@@ -60,10 +60,12 @@ for i = 1, lengthOflist, 1 do
         lengthOfTransaction = #tempMoneyTransaction
         --Is a transaction a positive or negative. This check is that "+" or "-"
         isPlusOrNegative = string.sub(tempMoneyTransaction, 1, 1)
-        --which was the purchase target
-        purchaseId = parsedData[i + 1]
-
+        
         if isPlusOrNegative == "-" then
+            --which was the purchase target
+        purchaseId = parsedData[i + 2]
+
+            
             --take money value out
             temp = string.sub(tempMoneyTransaction, 2, lengthOfTransaction)
             --change possible colon to dot
@@ -78,6 +80,9 @@ for i = 1, lengthOflist, 1 do
                 accountTransfer[purchaseId] = -temp1
             end
         elseif isPlusOrNegative == "+" then
+            --which was the purchase target
+        purchaseId = parsedData[i + 1]
+
             --take money value out
             temp = string.sub(tempMoneyTransaction, 2, lengthOfTransaction)
             --change possible colon to dot
