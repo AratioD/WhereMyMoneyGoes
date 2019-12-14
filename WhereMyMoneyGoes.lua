@@ -57,7 +57,6 @@ for i = 1, lengthOflist, 1 do
         if isPlusOrNegative == "-" then
             --which was the purchase target
             purchaseId = parsedData[i + 2]
-
             --take money value out
             temp = string.sub(tempMoneyTransaction, 2, lengthOfTransaction)
             --change possible colon to dot
@@ -74,7 +73,6 @@ for i = 1, lengthOflist, 1 do
         elseif isPlusOrNegative == "+" then
             --which was the purchase target
             purchaseId = parsedData[i + 1]
-
             --take money value out
             temp = string.sub(tempMoneyTransaction, 2, lengthOfTransaction)
             --change possible colon to dot
